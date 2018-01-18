@@ -1,5 +1,5 @@
 export enum MemeType {
-  VIDEO = 'VIDEO', IMAGE = 'IMAGE'
+  Video = 'Video', Photo = 'Photo', Animated = 'Animated'
 }
 
 export interface Meme {
@@ -10,20 +10,8 @@ export interface Meme {
 }
 
 export const getSelectionMemes = async (): Promise<Meme[]> => {
-  return [
-    {
-      id: 'dsasdada',
-      url: 'http://i.4cdn.org/wsg/1515796027659.webm',
-      type: MemeType.VIDEO,
-      title: 'title0'
-    },
-    {
-      id: 'qeqwqeweqw',
-      url: 'https://img-9gag-fun.9cache.com/photo/adKNnqD_460s.jpg',
-      type: MemeType.IMAGE,
-      title: 'title1'
-    }
-  ]
+  const response = await (await fetch('/api/v1/memes/selection')).json()
+  return response.data
 }
 
 export const voteMeme = async (id: string) => {

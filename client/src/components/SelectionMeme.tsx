@@ -13,7 +13,7 @@ const SelectionMeme = ({ meme, loading, onVote, disabled }: Props) => {
   return (
     <Segment textAlign={'center'} className={'SelectionMeme'}>
       <div className={'contentContainer'}>
-        {meme.type === MemeType.IMAGE ? <img src={meme.url} alt={meme.title} /> : <video controls={true} src={meme.url} />}
+        {meme.type === MemeType.Photo ? <img src={meme.url} alt={meme.title} /> : <video controls={true} src={meme.url} />}
         <Header>{meme.title}</Header>
       </div>
       <Button loading={loading} disabled={disabled} fluid={true} onClick={() => onVote(meme.id)} icon={'check'}/>
