@@ -1,6 +1,6 @@
 import * as express from 'express'
 const MemeRouter = express.Router()
-import memeRouter from './get'
+import memeRouter from './meme'
 
 MemeRouter.use('/', memeRouter)
 
