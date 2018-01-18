@@ -5,7 +5,10 @@ import { MemeType } from './MemeType'
 const MemeSchema = new Schema({
   _id: Schema.Types.ObjectId,
   url: String,
-  rating: Number,
+  rating: {
+    type: Number,
+    default: 0
+  },
   type: MemeType
 })
 
