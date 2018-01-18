@@ -9,7 +9,7 @@ const apiRouter = express.Router()
 // when u wanna add new controller, do this like:
 // router.use('/path', controller)
 
-apiRouter.use('/api/v1', MemeRouter)
+apiRouter.use('/api/v1', (req, res) => {})
 
 apiRouter.get('*', (req, res) => res.send('Hello world!'))
 
