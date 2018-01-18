@@ -1,11 +1,11 @@
 import * as express from 'express'
 import { memeFromDb } from '../../controllers/memeFromDb'
 import { memesRating } from '../../controllers/memesRating'
-import { memeIncRating } from '../../controllers/memeIncRate';
-const getRouter = express.Router()
+import { vote } from '../../controllers/vote';
+const memeRouter = express.Router()
 
-getRouter.get('/random', memeFromDb)
-getRouter.get('/rating', memesRating)
-getRouter.get('/inc_rating', memeIncRating)
+memeRouter.get('/random', memeFromDb)
+memeRouter.get('/rating', memesRating)
+memeRouter.get('/vote', vote)
 
-export default getRouter
+export default memeRouter

@@ -6,7 +6,10 @@ const MemeType_1 = require("./MemeType");
 const MemeSchema = new Schema({
     _id: Schema.Types.ObjectId,
     url: String,
-    rating: Number,
+    rating: {
+        type: Number,
+        default: 0
+    },
     type: MemeType_1.MemeType
 });
 exports.default = mongoose.model('Meme', MemeSchema, 'meme');
