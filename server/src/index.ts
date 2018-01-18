@@ -10,5 +10,5 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => console.log('Connected to database successfully.'))
 
 // server
-const port = parseInt(process.env.PORT) || 3001
+const port = parseInt(process.env.PORT, 10) || 3001
 server.listen(port, () => console.log(`Server is running on port: ${port}`))

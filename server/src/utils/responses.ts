@@ -1,13 +1,13 @@
-interface Answer {
+interface Response {
   success: boolean,
   message: string | undefined
   data: any
 }
 
-export const successRes = (data: object, message?: string ): Answer => ({
-  success: false, data, message
+export const successRes = (data: object, message?: string): Response => ({
+  success: true, data, message
 })
 
-export const failRes = (message: string): Answer => ({
-  success: true, message, data: undefined
+export const failRes = (message: string): Response => ({
+  success: false, message, data: undefined
 })
