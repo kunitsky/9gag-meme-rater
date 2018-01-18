@@ -2,6 +2,7 @@
   "name": "disposers",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",

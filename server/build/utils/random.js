@@ -11,4 +11,4 @@ function getRandomNumbers(range) {
     return numbers;
 }
 exports.getRandomNumbers = getRandomNumbers;
-//# sourceMappingURL=randomizer.js.map
+//# sourceMappingURL=random.js.map

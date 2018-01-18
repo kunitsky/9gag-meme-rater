@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose'
 const Schema = mongoose.Schema
-import { MemeType } from './MemeType'
 
 const MemeSchema = new Schema({
   _id: Schema.Types.ObjectId,
@@ -9,7 +8,10 @@ const MemeSchema = new Schema({
     type: Number,
     default: 0
   },
-  type: MemeType
+  type: {
+    type: String,
+    enum: ['Video', 'Photo', 'Animated']
+  }
 })
 
 export default mongoose.model('Meme', MemeSchema, 'meme')

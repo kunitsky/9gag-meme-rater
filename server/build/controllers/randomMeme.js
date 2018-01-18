@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = require("request-promise");
 const responses_1 = require("../utils/responses");
-const randomizer_1 = require("../utils/randomizer");
+const random_1 = require("../utils/random");
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot';
 exports.getRandomMemes = (req, res) => {
     request(memesEndpoint).then(json => {
         const responseMemes = JSON.parse(json).data.posts.filter(post => post.type !== 'Article');
-        const indecies = randomizer_1.getRandomNumbers(responseMemes.length);
+        const indecies = random_1.getRandomNumbers(responseMemes.length);
         const data = indecies.map(index => {
             let url;
             let meme = responseMemes[index];
@@ -32,4 +32,4 @@ exports.getRandomMemes = (req, res) => {
         res.status(200).json(responses_1.successRes(data));
     });
 };
-//# sourceMappingURL=randomMem.js.map
+//# sourceMappingURL=randomMeme.js.map
