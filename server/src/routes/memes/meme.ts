@@ -8,6 +8,6 @@ import { getMemes } from '../../controllers/randomMem'
 memeRouter.get('/selectionsMemems', getMemes)
 memeRouter.get('/random', memeFromDb)
 memeRouter.get('/rating', memesRating)
-memeRouter.get('/vote', vote)
+memeRouter.post('/vote', vote)
 
 export default memeRouter
