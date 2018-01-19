@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const MemeSchema = new Schema({
   _id: String,
   url: String,
+  title: String,
   rating: {
     type: Number,
     default: 1
