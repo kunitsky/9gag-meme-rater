@@ -13,6 +13,7 @@ const responses_1 = require("../utils/responses");
 const random_1 = require("../utils/random");
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot';
 exports.randomMemes = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    // TODO: Add cache
     let responseMemes = null;
     let cursor = null;
     for (let i = 0; i < 5; i++) {

@@ -3,14 +3,12 @@ import SelectionBox from '../components/SelectionBox'
 import { Meme, getSelectionMemes, voteMeme } from '../api/memes'
 import { Button, Divider } from 'semantic-ui-react'
 
-interface Props {}
-
 interface State {
   memes: Meme[] | null
   selectingMemeIndex: number | null
 }
 
-class SelectionPage extends React.Component<Props, State> {
+class SelectionPage extends React.Component<{}, State> {
   state = {
     memes: null,
     selectingMemeIndex: null
@@ -29,15 +27,12 @@ class SelectionPage extends React.Component<Props, State> {
 
   skip = () => this.setMemes()
 
-  onVote = async (memeId: string, memeIndex: number) => {
-    try {
-      this.setState({ selectingMemeIndex: memeIndex })
-      await voteMeme(memeId)
-      this.setState({ selectingMemeIndex: null })
-      this.setMemes()
-    } catch (error) {
-      console.error(error)
-    }
+  onVote = async (meme: Meme, memeIndex: number) => {
+    this.setState({ selectingMemeIndex: memeIndex })
+    const success = await voteMeme(meme)
+    if (!success) console.error('server error')
+    this.setState({ selectingMemeIndex: null })
+    this.setMemes()
   }
 
   render () {
