@@ -1,15 +1,17 @@
 import * as mongoose from 'mongoose'
 const Schema = mongoose.Schema
-import { MemeType } from './MemeType'
 
 const MemeSchema = new Schema({
   _id: String,
   url: String,
   rating: {
     type: Number,
-    default: 0
+    default: 1
   },
-  type: MemeType
+  type: {
+    type: String,
+    enum: ['Video', 'Photo', 'Animated']
+  }
 })
 
 export default mongoose.model('Meme', MemeSchema, 'meme')

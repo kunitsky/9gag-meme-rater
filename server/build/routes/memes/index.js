@@ -1,8 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const MemeRouter = express.Router();
-const get_1 = require("./get");
-MemeRouter.use('/', get_1.default);
-exports.default = MemeRouter;
+const memeRouter = express.Router();
+const memesRating_1 = require("../../controllers/memesRating");
+const vote_1 = require("../../controllers/vote");
+const randomMeme_1 = require("../../controllers/randomMeme");
+memeRouter.get('/selection', randomMeme_1.randomMemes);
+memeRouter.get('/rating', memesRating_1.memesRating);
+memeRouter.post('/vote', vote_1.vote);
+module.exports = memeRouter;
 //# sourceMappingURL=index.js.map

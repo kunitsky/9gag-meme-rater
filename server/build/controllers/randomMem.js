@@ -1,13 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const gagScraper = require("9gag-scraper");
+const request = require("request-promise");
 const responses_1 = require("../utils/responses");
-function getMemes(req, res) {
-    new gagScraper('fresh').getGags((errors, data) => {
-        res.status(200).json(responses_1.successRes({
-            data: data.count
-        }));
+const randomizer_1 = require("../utils/randomizer");
+const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot';
+exports.getRandomMemes = (req, res) => {
+    request(memesEndpoint).then(json => {
+        const responseMemes = JSON.parse(json).data.posts.filter(post => post.type !== 'Article');
+        const indecies = randomizer_1.getRandomNumbers(responseMemes.length);
+        const data = indecies.map(index => {
+            let url;
+            let meme = responseMemes[index];
+            switch (meme.type) {
+                case 'Photo':
+                    url = meme.images.image700.url;
+                    break;
+                case 'Animated':
+                    url = meme.images.image460svwm.url;
+                    break;
+                case 'Video':
+                    url = `https://youtu.be/${meme.video.id}`;
+                    break;
+            }
+            return {
+                type: meme.type,
+                title: meme.title,
+                id: meme.id,
+                url
+            };
+        });
+        res.status(200).json(responses_1.successRes(data));
     });
-}
-exports.getMemes = getMemes;
+};
 //# sourceMappingURL=randomMem.js.map
