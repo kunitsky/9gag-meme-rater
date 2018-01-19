@@ -14,7 +14,7 @@ const memesPerPage = 10;
 function memesRating(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const page = req.query.page || 0;
-        res.json(responses_1.successRes(yield Meme_1.default.find().sort('rating').skip(page * memesPerPage).limit(memesPerPage)));
+        res.json(responses_1.successRes(yield Meme_1.default.find().sort([['rating', -1]]).skip(page * memesPerPage).limit(memesPerPage)));
     });
 }
 exports.memesRating = memesRating;
