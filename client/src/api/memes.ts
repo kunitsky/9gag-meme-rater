@@ -7,6 +7,7 @@ export interface Meme {
   contentUrl: string
   title: string
   type: MemeType
+  rating: number
 }
 
 export const selectionMemes = async (): Promise<Meme[]> => {
