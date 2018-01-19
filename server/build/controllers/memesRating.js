@@ -13,8 +13,16 @@ const responses_1 = require("../utils/responses");
 const memesPerPage = 10;
 function memesRating(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const page = req.query.page || 0;
-        res.json(responses_1.successRes(yield Meme_1.default.find().sort([['rating', -1]]).skip(page * memesPerPage).limit(memesPerPage)));
+        const page = ~~req.query.page || 0;
+        const pagesCount = (yield Meme_1.default.find().count()) / memesPerPage;
+        let cursor = page >= 0 && page < pagesCount - 1 ? page + 1 : null;
+        if (page <= pagesCount - 1 || page >= 0) {
+            const memes = yield Meme_1.default.find().sort([['rating', -1]]).skip(page * memesPerPage).limit(memesPerPage);
+            res.json(responses_1.successRes({ memes, cursor }));
+        }
+        else {
+            res.json({ cursor });
+        }
     });
 }
 exports.memesRating = memesRating;
