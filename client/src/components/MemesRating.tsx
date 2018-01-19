@@ -26,7 +26,7 @@ const MemesRating = (props: Props) => {
       <Segment>
         {memes ? renderMemes(memes as Meme[]) : renderLoader()}
       </Segment>
-    </Container>x
+    </Container>
   )
 }
 
