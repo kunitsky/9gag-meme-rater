@@ -1,0 +1,7 @@
+{
+  "name": "dequeue",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd server && tsc && npm build && cd ../client && npm build"
+  }
+}
