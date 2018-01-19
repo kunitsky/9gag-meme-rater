@@ -2,24 +2,24 @@ import * as request from 'request-promise'
 import { Response, Request } from 'express'
 import { successRes, failRes } from '../utils/responses'
 import { getRandomNumbers } from '../utils/random'
+import * as cache from 'memory-cache'
+import * as gag from '../api/9gag'
 
-const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot'
+const refreshTime = 300000
+const pagesCount = 10
+
+const fillCache = () => {
+  gag.mems(pagesCount).then(memes => cache.put('memes', memes))
+}
+
+fillCache() // init fill
+
+setTimeout(fillCache, refreshTime)
 
 export const randomMemes = async (req: Request, res: Response) => {
   // TODO: Add cache
-  let responseMemes = null
-  let cursor = null
-  for (let i = 0; i < 5; i++) {
-    const json = await request(responseMemes ? memesEndpoint + '?' + cursor : memesEndpoint)
-    let parsed = JSON.parse(json).data
-    let response = parsed.posts.filter(post => post.type !== 'Article')
-    if (!responseMemes) {
-      responseMemes = response
-    } else {
-      responseMemes = [...responseMemes, ...response]
-    }
-    cursor = parsed.nextCursor
-  }
+
+  const responseMemes = cache.get('memes')
   const indecies = getRandomNumbers(responseMemes.length - 1)
   const data = indecies.map(index => {
     let url: string
