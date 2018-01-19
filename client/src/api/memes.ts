@@ -29,7 +29,9 @@ export const voteMeme = async (meme: Meme): Promise<Boolean> => {
   }
 }
 
-export const memesRating = async (): Promise<Meme[]> => {
-  const response = await (await fetch('/api/v1/memes/rating')).json()
+export const memesRating = async (cursor: number | null = null): Promise<{memes: Meme[], cursor: number | null}> => {
+  const nakedEndpoint = '/api/v1/memes/rating'
+  const endpoint = cursor ? `${nakedEndpoint}?cursor=${cursor}` : nakedEndpoint
+  const response = await (await fetch(endpoint)).json()
   return response.data
 }
