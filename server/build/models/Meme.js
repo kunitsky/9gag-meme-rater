@@ -14,5 +14,5 @@ const MemeSchema = new Schema({
         enum: ['Video', 'Photo', 'Animated']
     }
 });
-exports.default = mongoose.model('Meme', MemeSchema, 'meme');
+exports.default = mongoose.model('Meme', MemeSchema, 'memes');
 //# sourceMappingURL=Meme.js.map
