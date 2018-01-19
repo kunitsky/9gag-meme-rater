@@ -5,7 +5,7 @@ import { Segment, Header, Button } from 'semantic-ui-react'
 interface Props {
   meme: Meme
   loading: boolean
-  onVote: (memeId: string) => void
+  onVote: () => void
   disabled: boolean
 }
 
@@ -13,10 +13,10 @@ const SelectionMeme = ({ meme, loading, onVote, disabled }: Props) => {
   return (
     <Segment textAlign={'center'} className={'SelectionMeme'}>
       <div className={'contentContainer'}>
-        {meme.type === MemeType.Photo ? <img src={meme.url} alt={meme.title} /> : <video controls={true} src={meme.url} />}
+        {meme.type === MemeType.Photo ? <img src={meme.contentUrl} alt={meme.title} /> : <video controls={true} src={meme.contentUrl} />}
         <Header>{meme.title}</Header>
       </div>
-      <Button loading={loading} disabled={disabled} fluid={true} onClick={() => onVote(meme.id)} icon={'check'}/>
+      <Button loading={loading} disabled={disabled} fluid={true} onClick={onVote} icon={'check'}/>
     </Segment>
   )
 }

@@ -17,7 +17,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
         <Grid.Column key={index}>
           <SelectionMeme
             disabled={selectingMemeIndex !== null}
-            onVote={(memeId: string) => onVote(meme, index)}
+            onVote={() => onVote(meme, index)}
             loading={selectingMemeIndex === index}
             meme={meme}
           />

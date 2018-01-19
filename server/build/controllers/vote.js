@@ -12,9 +12,10 @@ const Meme_1 = require("../models/Meme");
 const responses_1 = require("../utils/responses");
 function vote(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const meme = yield Meme_1.default.findOneAndUpdate({ 'url': req.body.url }, {
+        console.log(req.body);
+        const meme = yield Meme_1.default.findOneAndUpdate({ gagId: req.body.gagId }, {
             $set: req.body,
-            $inc: { 'rating': 1 }
+            $inc: { rating: 1 }
         }, { upsert: true });
         res.status(200).json(responses_1.successRes(meme));
     });

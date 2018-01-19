@@ -20,28 +20,27 @@ const fillCache = () => {
 fillCache(); // init fill
 setTimeout(fillCache, refreshTime);
 exports.randomMemes = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    // TODO: Add cache
     const responseMemes = cache.get('memes');
     const indecies = random_1.getRandomNumbers(responseMemes.length - 1);
     const data = indecies.map(index => {
-        let url;
+        let contentUrl;
         let meme = responseMemes[index];
         switch (meme.type) {
             case 'Photo':
-                url = meme.images.image700.url;
+                contentUrl = meme.images.image700.url;
                 break;
             case 'Animated':
-                url = meme.images.image460svwm.url;
+                contentUrl = meme.images.image460svwm.url;
                 break;
             case 'Video':
-                url = `https://youtu.be/${meme.video.id}`;
+                contentUrl = `https://youtu.be/${meme.video.id}`;
                 break;
         }
         return {
             type: meme.type,
             title: meme.title,
-            id: meme.id,
-            url
+            gagId: meme.id,
+            contentUrl
         };
     });
     res.status(200).json(responses_1.successRes(data));

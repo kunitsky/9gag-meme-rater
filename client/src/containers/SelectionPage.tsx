@@ -1,6 +1,6 @@
 import * as React from 'react'
 import SelectionBox from '../components/SelectionBox'
-import { Meme, getSelectionMemes, voteMeme } from '../api/memes'
+import { Meme, selectionMemes, voteMeme } from '../api/memes'
 
 interface State {
   memes: Meme[] | null
@@ -15,7 +15,7 @@ class SelectionPage extends React.Component<{}, State> {
 
   setMemes = () => {
     this.setState({ memes: null })
-    getSelectionMemes().then(memes => {
+    selectionMemes().then(memes => {
       this.setState({ memes })
     })
   }
