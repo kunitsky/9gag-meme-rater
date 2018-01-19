@@ -1,7 +1,12 @@
 {
   "name": "dequeue",
   "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": "8.5.0",
+    "yarn": "1.3.2"
+  },
   "scripts": {
-    "start": "cd server && tsc && npm build && cd ../client && npm build"
+    "start": "cd server && yarn build && cd ../client && yarn build"
   }
 }
