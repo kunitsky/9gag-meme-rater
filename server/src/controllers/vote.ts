@@ -11,6 +11,5 @@ export async function vote (req: Request, res: Response, next: NextFunction) {
     },
     { upsert: true }
   )
-  console.log('meme: ',meme)
-  res.status(200).json(successRes({}))
+  res.json(successRes(meme))
 }

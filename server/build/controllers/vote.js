@@ -16,8 +16,7 @@ function vote(req, res, next) {
             $set: req.body,
             $inc: { 'rating': 1 }
         }, { upsert: true });
-        console.log('meme: ', meme);
-        res.status(200).json(responses_1.successRes({}));
+        res.json(responses_1.successRes(meme));
     });
 }
 exports.vote = vote;
