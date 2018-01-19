@@ -7,7 +7,7 @@ import SelectionMeme from './SelectionMeme'
 interface Props {
   memes: Meme[] | null
   selectingMemeIndex: number | null
-  onVote: (memeId: string, memeIndex: number) => void
+  onVote: (meme: Meme, memeIndex: number) => void
 }
 
 const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
@@ -17,7 +17,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
         <Grid.Column key={index}>
           <SelectionMeme
             disabled={selectingMemeIndex !== null}
-            onVote={(memeId: string) => onVote(memeId, index)}
+            onVote={(memeId: string) => onVote(meme, index)}
             loading={selectingMemeIndex === index}
             meme={meme}
           />

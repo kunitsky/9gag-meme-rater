@@ -6,6 +6,7 @@ import { getRandomNumbers } from '../utils/random'
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot'
 
 export const randomMemes = async (req: Request, res: Response) => {
+  // TODO: Add cache
   let responseMemes = null
   let cursor = null
   for (let i = 0; i < 5; i++) {
