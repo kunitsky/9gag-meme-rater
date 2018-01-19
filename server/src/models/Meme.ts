@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 import { MemeType } from './MemeType'
 
 const MemeSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+  _id: String,
   url: String,
   rating: {
     type: Number,
