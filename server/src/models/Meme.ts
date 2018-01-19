@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const MemeSchema = new Schema({
   _id: String,
-  url: String,
+  gagId: String,
+  contentUrl: String,
   title: String,
   rating: {
     type: Number,
