@@ -3,13 +3,14 @@ export enum MemeType {
 }
 
 export interface Meme {
-  id: string
-  url: string
+  gagId: string
+  contentUrl: string
   title: string
   type: MemeType
+  rating: number
 }
 
-export const getSelectionMemes = async (): Promise<Meme[]> => {
+export const selectionMemes = async (): Promise<Meme[]> => {
   const response = await (await fetch('/api/v1/memes/selection')).json()
   return response.data
 }
@@ -26,4 +27,9 @@ export const voteMeme = async (meme: Meme): Promise<Boolean> => {
   } catch (error) {
     return false
   }
+}
+
+export const memesRating = async (): Promise<Meme[]> => {
+  const response = await (await fetch('/api/v1/memes/rating')).json()
+  return response.data
 }

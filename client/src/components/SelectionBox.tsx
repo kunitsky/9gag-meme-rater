@@ -17,7 +17,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
         <Grid.Column key={index}>
           <SelectionMeme
             disabled={selectingMemeIndex !== null}
-            onVote={(memeId: string) => onVote(meme, index)}
+            onVote={() => onVote(meme, index)}
             loading={selectingMemeIndex === index}
             meme={meme}
           />
@@ -29,7 +29,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
   if (!memes) {
     return (
       <Segment>
-        <Dimmer active={true}>
+        <Dimmer inverted={true} active={true}>
           <Loader />
         </Dimmer>
       </Segment>
