@@ -1,5 +1,5 @@
 import * as express from 'express'
-import * as routes from './routes'
+import * as routes from './routes/index'
 import * as path from 'path'
 import * as bodyParser from 'body-parser'
 import * as morgan from 'morgan'
