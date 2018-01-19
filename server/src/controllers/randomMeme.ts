@@ -5,19 +5,19 @@ import { getRandomNumbers } from '../utils/random'
 
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot'
 
-export const getRandomMemes = async (req: Request, res: Response) => {
+export const randomMemes = async (req: Request, res: Response) => {
   let responseMemes = null
   let cursor = null
   for (let i = 0; i < 5; i++) {
     const json = await request(responseMemes ? memesEndpoint + '?' + cursor : memesEndpoint)
-    let parsed = JSON.parse(json)
-    let response = parsed.data.posts.filter(post => post.type !== 'Article')
+    let parsed = JSON.parse(json).data
+    let response = parsed.posts.filter(post => post.type !== 'Article')
     if (!responseMemes) {
       responseMemes = response
     } else {
       responseMemes = [...responseMemes, ...response]
     }
-    cursor = parsed.data.nextCursor
+    cursor = parsed.nextCursor
   }
   const indecies = getRandomNumbers(responseMemes.length - 1)
   const data = indecies.map(index => {

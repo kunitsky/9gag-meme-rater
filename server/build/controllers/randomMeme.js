@@ -12,20 +12,20 @@ const request = require("request-promise");
 const responses_1 = require("../utils/responses");
 const random_1 = require("../utils/random");
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot';
-exports.getRandomMemes = (req, res) => __awaiter(this, void 0, void 0, function* () {
+exports.randomMemes = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let responseMemes = null;
     let cursor = null;
     for (let i = 0; i < 5; i++) {
         const json = yield request(responseMemes ? memesEndpoint + '?' + cursor : memesEndpoint);
-        let parsed = JSON.parse(json);
-        let response = parsed.data.posts.filter(post => post.type !== 'Article');
+        let parsed = JSON.parse(json).data;
+        let response = parsed.posts.filter(post => post.type !== 'Article');
         if (!responseMemes) {
             responseMemes = response;
         }
         else {
             responseMemes = [...responseMemes, ...response];
         }
-        cursor = parsed.data.nextCursor;
+        cursor = parsed.nextCursor;
     }
     const indecies = random_1.getRandomNumbers(responseMemes.length - 1);
     const data = indecies.map(index => {
