@@ -4,10 +4,14 @@ import * as api from '../api/memes'
 import { Meme } from '../api/memes'
 
 interface State {
-  memes: Meme[]
+  memes: Meme[] | null
 }
 
 class RatingPage extends React.Component<{}, State> {
+  state = {
+    memes: null
+  }
+
   componentWillMount () {
     api.memesRating().then(memes => {
       this.setState({ memes })
@@ -15,9 +19,10 @@ class RatingPage extends React.Component<{}, State> {
   }
 
   render () {
+    const { memes } = this.state
     return (
       <div>
-        <MemesRating/>
+        <MemesRating memes={memes}/>
       </div>
     )
   }

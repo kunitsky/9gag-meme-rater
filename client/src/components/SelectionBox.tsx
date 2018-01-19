@@ -29,7 +29,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
   if (!memes) {
     return (
       <Segment>
-        <Dimmer active={true}>
+        <Dimmer inverted={true} active={true}>
           <Loader />
         </Dimmer>
       </Segment>
