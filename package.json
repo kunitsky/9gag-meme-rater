@@ -2,11 +2,13 @@
   "name": "dequeue",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "server/build/server.js",
   "engines": {
     "node": "8.5.0",
     "yarn": "1.3.2"
   },
   "scripts": {
-    "start": "cd server && yarn build && cd ../client && yarn build"
+    "preinstall": "cd server && yarn build && cd ../client && yarn build",
+    "start": "node server/build/server.js"
   }
 }
