@@ -16,6 +16,8 @@
     "postinstall": "tsc && cd ../client && yarn build"
   },
   "devDependencies": {
+  },
+  "dependencies": {
     "@types/express": "^4.11.0",
     "@types/mongoose": "^4.7.31",
     "@types/node": "^8.5.2",
@@ -23,9 +25,7 @@
     "nodemon": "^1.14.7",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
-    "typescript": "^2.6.2"
-  },
-  "dependencies": {
+    "typescript": "^2.6.2",
     "9gag-scraper": "^1.0.1",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
