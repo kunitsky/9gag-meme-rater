@@ -10,13 +10,7 @@
     "react-scroll": "^1.7.4",
     "react-waypoint": "^8.0.0",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.77.1"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js"
-  },
-  "devDependencies": {
+    "semantic-ui-react": "^0.77.1",
     "@types/immutable": "^3.8.7",
     "@types/jss": "^9.3.0",
     "@types/lodash": "^4.14.91",
@@ -58,6 +52,12 @@
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
   },
   "jest": {
     "mapCoverage": true,
