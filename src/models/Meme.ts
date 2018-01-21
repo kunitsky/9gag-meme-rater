@@ -2,7 +2,6 @@ import * as mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const MemeSchema = new Schema({
-  _id: String,
   gagId: String,
   contentUrl: String,
   title: String,
