@@ -9,7 +9,7 @@
     "tsc": "2.6.2"
   },
   "scripts": {
-    "preinstall": "cd server && yarn build && cd ../client && yarn build",
+    "postinstall": "cd server && yarn build && cd ../client && yarn build",
     "start": "node server/build/server.js"
   }
 }
