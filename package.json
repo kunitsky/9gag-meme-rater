@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "node ./build/index.js",
     "dev": "concurrently \"tsc --watch\" \"nodemon build\"",
-    "postinstall": "yarn build && cd client && yarn && yarn build"
+    "postinstall": "yarn global add tsc && yarn build && cd client && yarn && yarn build"
   },
   "engines": {
     "node": "8.5.0",
