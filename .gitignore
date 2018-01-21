@@ -1,8 +1,0 @@
-**/.env
-**/node_modules
-**/build
-**/yarn.lock
-**/*.log
-**/.idea
-**/.DS_Store
-**/.vscode
