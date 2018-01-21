@@ -2,7 +2,7 @@ import * as request from 'request-promise'
 
 const memesEndpoint = 'https://9gag.com/v1/group-posts/group/default/type/hot'
 
-export async function mems (count: number): Promise<{}> {
+export async function memes (count: number): Promise<{}> {
   let responseMemes = null
   let cursor = null
   for (let i = 0; i < count; i++) {
