@@ -23,8 +23,8 @@ export async function vote (req: Request, res: Response, next: NextFunction) {
   winner.rating = ratings[0]
   loser.rating = ratings[1]
 
-  winner.rating += k * winnerRatingChange(winner.rating, loser.rating)
-  loser.rating -= k * (1 - winnerRatingChange(winner.rating, loser.rating))
+  winner.rating += Math.floor(k * winnerRatingChange(winner.rating, loser.rating))
+  loser.rating -= Math.floor(k * (1 - winnerRatingChange(winner.rating, loser.rating)))
 
   await Promise.all([
     MemeModel.update({ gagId: winner.gagId }, winner, { upsert: true }),
