@@ -13,14 +13,21 @@ async function memeDbRating (gagId) {
 
 export async function vote (req: Request, res: Response, next: NextFunction) {
   let { winner, loser } = req.body
-  winner.rating = await memeDbRating(winner.gagId)
-  loser.rating = await memeDbRating(loser.gagId)
+  Promise.all([
+    memeDbRating(winner.gagId),
+    memeDbRating(loser.gagId)
+  ])
+  .then(ratings => {
+    winner.rating = ratings[0]
+    loser.rating = ratings[1]
+  })
 
   winner.rating += winnerRatingChange(winner.rating, loser.rating)
   loser.rating -= 1 - winnerRatingChange(winner.rating, loser.rating)
 
-  await MemeModel.update({ gagId: winner.gagId }, winner, { upsert: true })
-  await MemeModel.update({ gagId: loser.gagId }, loser, { upsert: true })
-
-  res.json(successRes({}))
+  Promise.all([
+    MemeModel.update({ gagId: winner.gagId }, winner, { upsert: true }),
+    MemeModel.update({ gagId: loser.gagId }, loser, { upsert: true })
+  ])
+  .then(() => res.json(successRes({})))  
 }
