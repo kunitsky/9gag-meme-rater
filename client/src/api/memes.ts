@@ -15,18 +15,13 @@ export const selectionMemes = async (): Promise<Meme[]> => {
   return response.data
 }
 
-export const voteMeme = async (meme: Meme): Promise<Boolean> => {
-  try {
-    const init: RequestInit = {
-      body: JSON.stringify(meme),
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' }
-    }
-    await fetch('/api/v1/memes/vote', init)
-    return true
-  } catch (error) {
-    return false
+export const voteMeme = async (meme: Meme): Promise<void> => {
+  const init: RequestInit = {
+    body: JSON.stringify(meme),
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' }
   }
+  await fetch('/api/v1/memes/vote', init)
 }
 
 export const memesRating = async (cursor: number | null = null): Promise<{memes: Meme[], cursor: number | null}> => {
