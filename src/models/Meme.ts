@@ -7,7 +7,7 @@ const MemeSchema = new Schema({
   title: String,
   rating: {
     type: Number,
-    default: 1
+    default: 0
   },
   type: {
     type: String,
