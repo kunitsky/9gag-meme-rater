@@ -1,9 +1,12 @@
 import { Request, Response, NextFunction } from 'express'
 import MemeModel from '../models/Meme'
+import * as _ from 'lodash'
 import { successRes, failRes } from '../utils/responses'
 
+const k = 10
+
 function winnerRatingChange(winnerRating: number, loserRating: number): number {
-  return 1 / (1 + Math.pow(10, (winnerRating - loserRating) / 400))
+  return 1 / (1 + Math.pow(10, Math.abs(winnerRating - loserRating) / 400))
 }
 
 async function memeDbRating (gagId) {
@@ -13,21 +16,19 @@ async function memeDbRating (gagId) {
 
 export async function vote (req: Request, res: Response, next: NextFunction) {
   let { winner, loser } = req.body
-  Promise.all([
+  let ratings = await Promise.all([
     memeDbRating(winner.gagId),
     memeDbRating(loser.gagId)
   ])
-  .then(ratings => {
-    winner.rating = ratings[0]
-    loser.rating = ratings[1]
-  })
+  winner.rating = ratings[0]
+  loser.rating = ratings[1]
 
-  winner.rating += winnerRatingChange(winner.rating, loser.rating)
-  loser.rating -= 1 - winnerRatingChange(winner.rating, loser.rating)
+  winner.rating += k * winnerRatingChange(winner.rating, loser.rating)
+  loser.rating -= k * (1 - winnerRatingChange(winner.rating, loser.rating))
 
-  Promise.all([
+  await Promise.all([
     MemeModel.update({ gagId: winner.gagId }, winner, { upsert: true }),
     MemeModel.update({ gagId: loser.gagId }, loser, { upsert: true })
   ])
-  .then(() => res.json(successRes({})))  
+  res.json(successRes({}))
 }
