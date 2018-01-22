@@ -16,7 +16,7 @@ const RatingMeme = ({ meme, position }: Props) => {
         <span className={'position'}>
           {position}.{' '}
         </span>
-        {meme.rating} {meme.rating === 1 ? 'vote' : 'votes'}
+        {meme.rating} {'points'}
       </h1>
       <Segment>
         <div className={'titleContainer'}>

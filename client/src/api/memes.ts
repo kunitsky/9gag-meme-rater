@@ -15,9 +15,11 @@ export const selectionMemes = async (): Promise<Meme[]> => {
   return response.data
 }
 
-export const voteMeme = async (meme: Meme): Promise<void> => {
+export const voteMeme = async (winner: Meme, loser: Meme): Promise<void> => {
   const init: RequestInit = {
-    body: JSON.stringify(meme),
+    body: JSON.stringify({
+      winner, loser
+    }),
     method: 'post',
     headers: { 'Content-Type': 'application/json' }
   }

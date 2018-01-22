@@ -1,6 +1,14 @@
 import * as mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
+interface Meme extends mongoose.Document {
+  gagId: string
+  contentUrl: string
+  title: string
+  rating: number
+  type: string
+}
+
 const MemeSchema = new Schema({
   gagId: String,
   contentUrl: String,
@@ -15,4 +23,4 @@ const MemeSchema = new Schema({
   }
 })
 
-export default mongoose.model('Meme', MemeSchema, 'memes')
+export default mongoose.model<Meme>('Meme', MemeSchema, 'memes')

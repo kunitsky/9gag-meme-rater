@@ -7,7 +7,7 @@ import SelectionMeme from './SelectionMeme'
 interface Props {
   memes: Meme[] | null
   selectingMemeIndex: number | null
-  onVote: (meme: Meme, memeIndex: number) => void
+  onVote: (winner: Meme, memeIndex: number) => void
 }
 
 const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {

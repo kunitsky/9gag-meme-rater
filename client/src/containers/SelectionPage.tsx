@@ -8,9 +8,12 @@ interface State {
 }
 
 class SelectionPage extends React.Component<{}, State> {
-  state = {
-    memes: null,
-    selectingMemeIndex: null
+  constructor (props: {}) {
+    super(props)
+    this.state = {
+      memes: null,
+      selectingMemeIndex: null
+    }
   }
 
   setMemes = () => {
@@ -24,10 +27,12 @@ class SelectionPage extends React.Component<{}, State> {
     this.setMemes()
   }
 
-  onVote = async (meme: Meme, memeIndex: number) => {
+  onVote = async (winner: Meme, memeIndex: number) => {
+    const memes = this.state.memes
     this.setState({ selectingMemeIndex: memeIndex })
-    const success = await voteMeme(meme)
-    if (!success) console.error('server error')
+    if (memes) {
+      await voteMeme(winner, memes[0].gagId === winner.gagId ? memes[1] : memes[0])
+    }
     this.setState({ selectingMemeIndex: null })
     this.setMemes()
   }
