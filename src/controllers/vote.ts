@@ -5,7 +5,7 @@ import { successRes, failRes } from '../utils/responses'
 const k = 10
 
 function winnerRatingChange (winnerRating: number, loserRating: number): number {
-  return 1 / (1 + Math.pow(10, Math.abs(winnerRating - loserRating) / 400))
+  return 1 / (1 + Math.pow(10, (winnerRating - loserRating) / 400))
 }
 
 async function memeDbRating (gagId) {
