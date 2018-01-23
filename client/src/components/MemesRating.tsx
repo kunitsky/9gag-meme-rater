@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Segment, Loader } from 'semantic-ui-react'
 import { Meme } from '../api/memes'
 import RatingMeme from './RatingMeme'
 
@@ -10,9 +10,7 @@ interface Props {
 const MemesRating = (props: Props) => {
   const renderLoader = () => {
     return (
-      <Dimmer inverted={true} active={true}>
-        <Loader/>
-      </Dimmer>
+      <Loader active={true}/>
     )
   }
 
@@ -20,13 +18,20 @@ const MemesRating = (props: Props) => {
     return memes.map((meme, index) => <RatingMeme position={index + 1} key={index} meme={meme} />)
   }
 
+  const renderNoMemes = () => {
+    return <h2>No votes...</h2>
+  }
+
   const { memes } = props
+
+  if (!memes) {
+    return renderLoader()
+  }
+
   return (
-    <Container>
-      <Segment>
-        {memes ? renderMemes(memes as Meme[]) : renderLoader()}
-      </Segment>
-    </Container>
+    <Segment>
+      {memes.length === 0 ? renderNoMemes : renderMemes(memes as Meme[])}
+    </Segment>
   )
 }
 

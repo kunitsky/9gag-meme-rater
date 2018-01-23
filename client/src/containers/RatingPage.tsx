@@ -2,7 +2,7 @@ import * as React from 'react'
 import MemesRating from '../components/MemesRating'
 import * as api from '../api/memes'
 import { Meme } from '../api/memes'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Container } from 'semantic-ui-react'
 const Waypoint = require('react-waypoint').default
 
 interface State {
@@ -39,11 +39,12 @@ class RatingPage extends React.Component<{}, State> {
   render () {
     const { memes, fetchingMore } = this.state
     return (
-      <div>
+      <Container>
+        <h2>Rating calculated using Elo rating system.</h2>
         <MemesRating memes={memes}/>
         {memes && <Waypoint onEnter={this.fetchMore}/>}
         {fetchingMore && <Loader active={true} inline='centered' />}
-      </div>
+      </Container>
     )
   }
 }

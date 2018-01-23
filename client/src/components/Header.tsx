@@ -1,20 +1,26 @@
 import * as React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Container } from 'semantic-ui-react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-const Header = (props: RouteComponentProps<any>) => {
-  const redirectToSelection = () => props.history.push('/selection')
-  const redirectToRating = () => props.history.push('/rating')
+const Header = ({ history }: RouteComponentProps<any>) => {
+  const redirectToSelection = () => history.push('/selection')
+  const redirectToRating = () => history.push('/rating')
+  const redirectToLanding = () => history.push('/')
   return (
     <Menu>
-      <Menu.Menu position='right'>
-        <Menu.Item onClick={redirectToSelection} name='selection'>
-          Selection
+      <Container>
+        <Menu.Item onClick={redirectToLanding}>
+          Agregator
         </Menu.Item>
-        <Menu.Item onClick={redirectToRating} name='rating'>
-          Rating
-        </Menu.Item>
-      </Menu.Menu>
+        <Menu.Menu position='right'>
+          <Menu.Item onClick={redirectToSelection} name='selection'>
+            Selection
+          </Menu.Item>
+          <Menu.Item onClick={redirectToRating} name='rating'>
+            Rating
+          </Menu.Item>
+        </Menu.Menu>
+      </Container>
     </Menu>
   )
 }

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Meme } from '../api/memes'
 import { Segment } from 'semantic-ui-react'
 import MemeContent from './MemeContent'
-const gagImage = require('../media/9gag.png')
+import GagLink from './GagLink'
 
 interface Props {
   meme: Meme
@@ -21,7 +21,7 @@ const RatingMeme = ({ meme, position }: Props) => {
       <Segment>
         <div className={'titleContainer'}>
           <h3>{meme.title}</h3>
-          <img src={gagImage} alt={'gag logo'}/>
+          <GagLink gagId={meme.gagId}/>
         </div>
         <MemeContent meme={meme}/>
       </Segment>

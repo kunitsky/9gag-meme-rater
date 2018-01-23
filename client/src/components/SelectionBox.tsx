@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Grid, Loader, Dimmer } from 'semantic-ui-react'
+import { Grid, Loader } from 'semantic-ui-react'
 import { Meme } from '../api/memes'
-import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment'
 import SelectionMeme from './SelectionMeme'
 
 interface Props {
@@ -28,11 +27,7 @@ const SelectionBox = ({ onVote, memes, selectingMemeIndex }: Props) => {
 
   if (!memes) {
     return (
-      <Segment>
-        <Dimmer inverted={true} active={true}>
-          <Loader />
-        </Dimmer>
-      </Segment>
+      <Loader active={true} />
     )
   }
 
