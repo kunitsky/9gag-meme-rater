@@ -8,9 +8,10 @@ import LandingPage from '../containers/LandingPage'
 const App = () => (
   <Layout>
     <Switch>
-      <Route exact={true} component={LandingPage} path={'/'}/>
+      {/* <Route exact={true} component={LandingPage} path={'/'}/> */}
       <Route exact={true} component={SelectionPage} path={'/selection'}/>
       <Route exact={true} component={RatingPage} path={'/rating'}/>
+      <Route component={LandingPage}/>
     </Switch>
   </Layout>
 )
