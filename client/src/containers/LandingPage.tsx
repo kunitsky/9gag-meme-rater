@@ -27,7 +27,7 @@ class LandingPage extends React.Component<RouteComponentProps<{}>, State> {
     return(
       <div className='LandingPage'>
         <h1>9gag meme agregator</h1>
-        <h2>Last live 100 fresh memes from 9gag!</h2>
+        <h2>Fresh memes from 9gag!</h2>
         <div className={menuClassName}>
           <Grid columns={2} verticalAlign={'middle'}>
             <Grid.Column>
